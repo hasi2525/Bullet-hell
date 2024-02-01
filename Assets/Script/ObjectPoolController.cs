@@ -1,31 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// 弾のオブジェクトプールを管理するクラス
+/// </summary>
 public class ObjectPoolController : MonoBehaviour
 {
-    //弾のプレファブ
-    [SerializeField,Header("弾のプレハブ")] BulletController Bullet;
-    //生成する数
-    [SerializeField,Header("オブジェクトの最大数")] int maxCount;
-    //生成した弾を格納するQueue
-    Queue<BulletController> bulletQueue;
-    //初回生成時のポジション
-    Vector2 setPos = new Vector2(0, 100f);
+    // 弾のプレファブ
+    [SerializeField, Header("弾のプレハブ")]
+    private BulletController bulletPrefab;
+    // 生成する弾の最大数
+    [SerializeField, Header("オブジェクトの最大数")]
+    private int maxCount;
+    // 生成した弾を格納するQueue
+    private Queue<BulletController> bulletQueue;
+    // 弾の初回生成位置
+    private Vector2 initialPosition = new Vector2(0, 100f); 
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     private void Awake()
     {
-        //Queueの初期化
+        // Queueの初期化
         bulletQueue = new Queue<BulletController>();
 
-        //弾を生成
-        for (int i = 0;i < maxCount; i++)
+        // 弾を生成
+        for (int i = 0; i < maxCount; i++)
         {
-            //弾のオブジェクト生成
-            BulletController tmpBullet = Instantiate(Bullet, setPos, Quaternion.identity, transform);
-            //Queueに追加
+            // 弾のオブジェクト生成
+            BulletController tmpBullet = Instantiate(bulletPrefab, initialPosition, Quaternion.identity, transform);
+            // Queueに追加
             bulletQueue.Enqueue(tmpBullet);
+            // オブジェクトを非アクティブにする
+            tmpBullet.gameObject.SetActive(false);
         }
     }
-    //弾を貸し出す処理
+
+    /// <summary>
+    /// 弾をプールから取り出して表示する処理
+    /// </summary>
+    /// <param name="_pos">表示する位置</param>
+    /// <returns>取り出した弾のコントローラー</returns>
     public BulletController Launch(Vector3 _pos)
     {
         // Queueが空ならnull
@@ -46,12 +62,16 @@ public class ObjectPoolController : MonoBehaviour
         // 呼び出し元に渡す
         return tmpBullet;
     }
-    //弾の回収処理
+
+    /// <summary>
+    /// 弾を回収してプールに戻す処理
+    /// </summary>
+    /// <param name="_bullet">回収する弾のコントローラー</param>
     public void Collect(BulletController _bullet)
     {
-        //弾のゲームオブジェクトを非表示
+        // 弾のゲームオブジェクトを非表示
         _bullet.gameObject.SetActive(false);
-        //Queueに格納
+        // Queueに格納
         bulletQueue.Enqueue(_bullet);
     }
 }

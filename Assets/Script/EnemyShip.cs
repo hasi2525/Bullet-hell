@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 敵の船を制御するクラス
+/// </summary>
 public class EnemyShip : MonoBehaviour
 {
-    //撃破エフェクト
-    [SerializeField]
-    GameObject explosion;
+    [SerializeField, Header("撃破エフェクトのプレファブ")]
+    private GameObject explosion;
 
     GameController gameController;
 
@@ -25,6 +26,9 @@ public class EnemyShip : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 敵の移動を行います
+    /// </summary>
     public void Move()
     {
         // 敵のが下に移動する
@@ -32,13 +36,13 @@ public class EnemyShip : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //点を加点しない
+        // 点を加点しない
         if(collision.CompareTag("Player") == true)
         {
             Instantiate(explosion, collision.transform.position, transform.rotation);
             gameController.GameOver();
         }
-        //点を加点する
+        // 点を加点する
         else if (collision.CompareTag("Bullet") == true)
         {
             gameController.AddScore();

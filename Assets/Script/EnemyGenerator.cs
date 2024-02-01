@@ -1,23 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 敵の生成を制御するクラス
+/// </summary>
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField]
-    GameObject enemeyPrefab;
-    [SerializeField]
-    GameObject BossEnemyPrefab;
+    [SerializeField, Header("通常の敵のプレファブ")]
+    private GameObject enemyPrefab;
+
+    [SerializeField, Header("ボスの敵のプレファブ")]
+    private GameObject bossEnemyPrefab;
 
     float minX = -8f;
     float maxX = 8f;
     void Start()
     {
-        InvokeRepeating("Spawn",1f,2f);
-        Invoke("BossSpawn", 1f);
+        // 通常の敵を定期的に生成
+        InvokeRepeating("SpawnEnemy", 1f,2f);
+        // ボスの敵を生成
+        InvokeRepeating("SpawnBoss", 10f, 20f);
     }
-    　//生成する
-    void Spawn()
+    /// <summary>
+    /// 通常の敵を生成するメソッド
+    /// </summary>
+    void SpawnEnemy()
     {
         //生成する位置をランダムにする
         Vector3 spqwnPosition = new Vector3(
@@ -25,18 +32,19 @@ public class EnemyGenerator : MonoBehaviour
             transform.position.y,
             transform.position.z);
 
-            Instantiate(
-            enemeyPrefab,　//生成するオブジェクト
+        // 敵を生成
+        Instantiate(
+            enemyPrefab,　//生成するオブジェクト
             spqwnPosition,　　　　 //生成する位置
             transform.rotation);   //生成する向き
     }
-    void BossSpawn()
+
+    /// <summary>
+    /// ボスの敵を生成するメソッド。
+    /// </summary>
+
+    void SpawnBoss()
     {
-        Instantiate(BossEnemyPrefab, transform.position, transform.rotation);
-        //CancelInvoke();
-    }
-    void Update()
-    {
-        
+        Instantiate(bossEnemyPrefab, transform.position, transform.rotation);
     }
 }

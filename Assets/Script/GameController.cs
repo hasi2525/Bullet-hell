@@ -2,42 +2,55 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// ゲームの進行やプレイヤーのスコアを管理するクラス
+/// </summary>
 public class GameController : MonoBehaviour
 {
-    [SerializeField] 
+    //ゲームオーバーテキスト
+    [SerializeField]
     GameObject gameOverText;
 
+    //ゲームクリアテキスト
     [SerializeField]
     GameObject gameClearText;
 
-    [SerializeField] 
+    //スコアテキスト
+    [SerializeField]
     Text scoreText;
 
+    //スコア
     private int score = 0;
-
-    private const int points = 100;
-
-    private const int TargetScore = 1000;
+    //敵一機あたりのスコア
+    private const int PointsPerEnemy = 100;
+    //ゲームクリア目標ポイント
+    private const int TargetScore = 3000;
 
     void Start()
     {
+        // ゲームオーバーとゲームクリアの表示を初期化
         gameOverText.SetActive(false);
         gameClearText.SetActive(false);
     }
 
     void Update()
     {
-        if (gameOverText.activeSelf || gameClearText.activeSelf　)
+        // ゲームオーバーまたはゲームクリア時の入力処理
+        if (gameOverText.activeSelf || gameClearText.activeSelf)
         {
             HandleInputForReloadScene();
         }
+        // スコアが目標に達したらゲームクリア処理を呼ぶ
         else if (score >= TargetScore)
         {
             GameClear();
         }
     }
 
-    void HandleInputForReloadScene()
+    /// <summary>
+    /// 入力を処理してシーンをリロード
+    /// </summary>
+    private void HandleInputForReloadScene()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -46,35 +59,62 @@ public class GameController : MonoBehaviour
         }
     }
 
-    void ReloadMainScene()
+    /// <summary>
+    /// メインシーンをリロード
+    /// </summary>
+    private void ReloadMainScene()
     {
         SceneManager.LoadScene("MainScene");
     }
 
+    /// <summary>
+    /// スコアを加算し、表示を更新
+    /// </summary>
     public void AddScore()
     {
-        score += points;
-        scoreText.text = "Score:" + score;
+        score += PointsPerEnemy;
+        UpdateScoreText();
     }
 
+    /// <summary>
+    /// ゲームオーバーの表示を行い、時間を停止
+    /// </summary>
     public void GameOver()
     {
         gameOverText.SetActive(true);
         StopTime();
     }
 
+    /// <summary>
+    /// ゲームクリアの表示を行い、時間を停止
+    /// </summary>
     public void GameClear()
     {
         gameClearText.SetActive(true);
         StopTime();
     }
 
-    void StopTime()
+    /// <summary>
+    /// 時間を停止
+    /// </summary>
+    private void StopTime()
     {
-        Time.timeScale = 0f; // 時間を停止
+        Time.timeScale = 0f;
     }
-    void ResetTimeScale()
+
+    /// <summary>
+    /// 時間をもとに戻す
+    /// </summary>
+    private void ResetTimeScale()
     {
-        Time.timeScale = 1f; // 時間をもとに戻す
+        Time.timeScale = 1f;
+    }
+
+    /// <summary>
+    /// スコア表示を更新
+    /// </summary>
+    private void UpdateScoreText()
+    {
+        scoreText.text = "Score: " + score;
     }
 }

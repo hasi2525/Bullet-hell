@@ -162,4 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 3
-  angularSpeed: 0
+  angularSpeed: 0.5

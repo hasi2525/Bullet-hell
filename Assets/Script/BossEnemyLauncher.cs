@@ -17,7 +17,7 @@ public class BossEnemyLauncher : MonoBehaviour
 
     void Start()
     {
-        // Coroutineを開始するためには StartCoroutine を使用
+        // EnemyShotを開始するための　StartCoroutine
         StartCoroutine(EnemyShot());
     }
 
@@ -31,7 +31,7 @@ public class BossEnemyLauncher : MonoBehaviour
             // bulletsPerShot 回だけ弾を発射
             for (int i = 0; i < bulletsPerShot; i++)
             {
-                // オブジェクトプールのLaunch関数呼び出し
+                // オブジェクトプールの Launch 関数呼び出し
                 objectPool.Launch(transform.position);
             }
 

@@ -2,15 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ボスの弾を管理するオブジェクトプールのクラス。
+/// ボスの弾を管理するオブジェクトプールのクラス
 /// </summary>
 public class BossObjectPoolController : MonoBehaviour
 {
     // 弾のプレファブ
-    [SerializeField, Header("弾のプレハブ")] private BossBulletController bulletPrefab;
+    [SerializeField, Header("弾のプレハブ")] 
+    private BossBulletController bulletPrefab;
 
     // 生成する弾の最大数
-    [SerializeField, Header("オブジェクトの最大数")] private int maxBulletCount;
+    [SerializeField, Header("オブジェクトの最大数")]
+    private int maxBulletCount;
 
     // 生成した弾を格納するQueue
     private Queue<BossBulletController> bulletQueue;
@@ -35,7 +37,7 @@ public class BossObjectPoolController : MonoBehaviour
     }
 
     /// <summary>
-    /// 弾を発射するメソッド。
+    /// 弾を発射するメソッド
     /// </summary>
     /// <param name="_pos">発射する位置</param>
     /// <returns>発射された弾</returns>
@@ -61,7 +63,7 @@ public class BossObjectPoolController : MonoBehaviour
     }
 
     /// <summary>
-    /// 弾の回収処理を行うメソッド。
+    /// 弾の回収処理を行うメソッド
     /// </summary>
     /// <param name="_bullet">回収する弾</param>
     public void Collect(BossBulletController _bullet)

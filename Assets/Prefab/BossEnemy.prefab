@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6553662494981244582, guid: 6f50dd169e980eb4bab364626375ed24, type: 3}
-  maxBulletCount: 20
+  maxBulletCount: 100
 --- !u!114 &5842218691792232198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPool: {fileID: -42000877413905112}
-  shotInterval: 0
+  shotInterval: 1
   bulletsPerShot: 15
 --- !u!114 &4476865273147789746
 MonoBehaviour:

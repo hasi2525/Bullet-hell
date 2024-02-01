@@ -1,45 +1,49 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトを発射するクラス
+/// </summary>
 public class Launcher : MonoBehaviour
 {
-    //オブジェクトプール
-    [SerializeField] 
-    ObjectPoolController objectPool;
-    //弾生成位置
-    [SerializeField] Vector3 launchOffset;
-    //発射の間隔
-    [SerializeField] 
-    float interval;
-    // Start is called before the first frame update
+    [SerializeField, Header("弾のオブジェクトプールコントローラー")]
+    private ObjectPoolController objectPool;
+
+    [SerializeField, Header("弾の生成位置オフセット")]
+    private Vector3 launchOffset;
+
+    [SerializeField, Header("発射の間隔")]
+    private float interval;
     void Start()
     {
-
+        // 初期化などがあればここで行う
     }
-    IEnumerator _shot()
+
+    /// <summary>
+    /// 弾を発射するコルーチン
+    /// </summary>
+    IEnumerator Shot()
     {
-        //発射ループ
+        // 発射ループ
         while (true)
         {
-            //オブジェクトプールのLaunch関数呼び出し
+            // オブジェクトプールのLaunch関数呼び出し
             objectPool.Launch(transform.position + launchOffset);
             yield return new WaitForSeconds(interval);
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
-        //マウスを押している間は発射ループ
+        // マウスの左ボタンが押されたら発射ループを開始
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(_shot());
+            StartCoroutine("Shot");
         }
-        //マウスを離したらループストップ
+        // マウスの左ボタンが離されたらループ停止
         else if (Input.GetMouseButtonUp(0))
         {
             StopAllCoroutines();
         }
     }
-
 }

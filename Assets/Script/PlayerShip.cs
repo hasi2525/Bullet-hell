@@ -1,39 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// プレイヤーの機体を制御するクラス
+/// </summary>
 public class PlayerShip : MonoBehaviour
 {
-    //撃破エフェクト
-    [SerializeField]
-    GameObject explosion;
+    [SerializeField] private GameObject explosion; // 撃破エフェクト
+    private GameController gameController; // ゲームコントローラー
+    [SerializeField] private Slider slider; // プレイヤーの体力を表示するスライダー
 
-    GameController gameController;
-    [SerializeField]
-    Slider slider;
+    private const float InitialHealth = 10f; // 初期体力
+    private const float Damage = 1f; // ダメージ量
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     void Start()
     {
-        slider.value = 10;
+        slider.value = InitialHealth;
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
     }
-    void Update()
-    {
-        
-    }
+
+    /// <summary>
+    /// 衝突時の処理
+    /// </summary>
+    /// <param name="collision">衝突したコライダー</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("EnemyBullet") == true)
         {
-            slider.value -= 1;
-            if (slider.value == 0 || collision.CompareTag("Enemy"))
-            {
-                slider.value = 0;
-                Instantiate(explosion, collision.transform.position, transform.rotation);
-                Destroy(gameObject);
-                gameController.GameOver();
-            }
+            // ダメージを受ける
+            TakeDamage();
+        }
+    }
+
+    /// <summary>
+    /// ダメージを受ける処理
+    /// </summary>
+    private void TakeDamage()
+    {
+        slider.value -= Damage;
+
+        // 体力が0以下になったら撃破処理を実行
+        if (slider.value <= 0)
+        {
+            slider.value = 0;
+            Instantiate(explosion, transform.position, transform.rotation);
+            Destroy(gameObject);
+            gameController.GameOver();
         }
     }
 }

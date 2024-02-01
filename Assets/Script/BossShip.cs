@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// ボスの機体を制御するクラス。
+/// ボスの機体を制御するクラス
 /// </summary>
 public class BossShip : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class BossShip : MonoBehaviour
     GameController gameController;
 
     // ボスの体力
-    [SerializeField, Tooltip("ボスの体力")] private int maxHp = 20;
+    [SerializeField, Header("ボスの体力")] private int maxHp = 20;
     private int currentHp;
 
     // 特定の位置より上の目標位置
@@ -32,7 +32,7 @@ public class BossShip : MonoBehaviour
     }
 
     /// <summary>
-    /// ボスの移動を制御するコルーチン。
+    /// ボスの移動を制御するコルーチン
     /// </summary>
     IEnumerator Boss()
     {
@@ -46,7 +46,7 @@ public class BossShip : MonoBehaviour
     }
 
     /// <summary>
-    /// Bossの当たり判定を処理するメソッド。
+    /// Bossの当たり判定を処理するメソッド
     /// </summary>
     /// <param name="collision">衝突したコライダー</param>
     public void OnTriggerEnter2D(Collider2D collision)

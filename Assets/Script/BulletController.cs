@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 弾の制御を行うクラス
+/// </summary>
 public class BulletController : MonoBehaviour
 {
     // オブジェクトプール用コントローラー格納用変数宣言
@@ -17,7 +20,6 @@ public class BulletController : MonoBehaviour
     {
         // オブジェクトプール取得
         objectPool = transform.parent.GetComponent<ObjectPoolController>();
-        gameObject.SetActive(false);
     }
 
     void Update()
@@ -25,6 +27,9 @@ public class BulletController : MonoBehaviour
         MoveBullet();
     }
 
+    /// <summary>
+    /// 弾の移動を制御
+    /// </summary>
     void MoveBullet()
     {
         // プレイヤーの弾は上向き
@@ -46,12 +51,20 @@ public class BulletController : MonoBehaviour
             HideFromStage();
         }
     }
+
+    /// <summary>
+    /// 弾を指定された座標に表示
+    /// </summary>
+    /// <param name="_pos">表示する座標</param>
     public void ShowInStage(Vector2 _pos)
     {
         // positionを渡された座標に設定
         transform.position = _pos;
     }
 
+    /// <summary>
+    /// 弾を画面から非表示にし、オブジェクトプールに回収
+    /// </summary>
     private void HideFromStage()
     {
         // オブジェクトプールのCollect関数を呼び出し自身を回収
