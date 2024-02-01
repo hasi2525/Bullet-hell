@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
 
     private const int points = 100;
 
-    private const int TargetScore = 1000; // ゲームクリアのスコア目標
+    private const int TargetScore = 1000;
 
     void Start()
     {

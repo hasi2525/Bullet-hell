@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// ボス敵の弾発射を制御するクラス。
+/// ボス敵の弾発射を制御するクラス
 /// </summary>
 public class BossEnemyLauncher : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class BossEnemyLauncher : MonoBehaviour
     }
 
     /// <summary>
-    /// 弾の発射を制御するコルーチン。
+    /// 弾の発射を制御するコルーチン
     /// </summary>
     IEnumerator EnemyShot()
     {

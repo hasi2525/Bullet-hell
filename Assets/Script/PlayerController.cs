@@ -7,21 +7,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //方向キーで入力された横軸の値を取得
-        float x = Input.GetAxisRaw("Horizontal");
-
-        //方向キーで入力された縦軸の値を取得
-        float y = Input.GetAxisRaw("Vertical");
-
         Move();
     }
 
     void Move()
     {
-        //横軸の値を返す
+        //方向キーで入力された横軸の値を取得
         float x = Input.GetAxisRaw("Horizontal");
 
-        //縦軸の値を返す
+        //方向キーで入力された縦軸の値を取得
         float y = Input.GetAxisRaw("Vertical");
 
         //移動制御

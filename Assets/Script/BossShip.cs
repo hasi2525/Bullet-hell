@@ -27,14 +27,14 @@ public class BossShip : MonoBehaviour
         // 初期化
         currentHp = maxHp;
 
-        // CPUコルーチンを開始
-        StartCoroutine("CPU");
+        // Bossコルーチンを開始
+        StartCoroutine("Boss");
     }
 
     /// <summary>
     /// ボスの移動を制御するコルーチン。
     /// </summary>
-    IEnumerator CPU()
+    IEnumerator Boss()
     {
         // 特定の位置より上だったら
         while (transform.position.y > targetYPosition)
