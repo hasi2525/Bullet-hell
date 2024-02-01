@@ -27,16 +27,13 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (gameOverText.activeSelf || gameClearText.activeSelf)
+        if (gameOverText.activeSelf || gameClearText.activeSelf@)
         {
             HandleInputForReloadScene();
         }
-        else
+        else if (score >= TargetScore)
         {
-            if (score >= TargetScore)
-            {
-                GameClear();
-            }
+            GameClear();
         }
     }
 

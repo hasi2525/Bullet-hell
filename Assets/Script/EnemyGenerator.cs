@@ -11,7 +11,6 @@ public class EnemyGenerator : MonoBehaviour
 
     float minX = -8f;
     float maxX = 8f;
-    // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("Spawn",1f,2f);

@@ -27,8 +27,9 @@ public class PlayerShip : MonoBehaviour
         if (collision.CompareTag("EnemyBullet") == true)
         {
             slider.value -= 1;
-            if (slider.value == 0)
+            if (slider.value == 0 || collision.CompareTag("Enemy"))
             {
+                slider.value = 0;
                 Instantiate(explosion, collision.transform.position, transform.rotation);
                 Destroy(gameObject);
                 gameController.GameOver();
