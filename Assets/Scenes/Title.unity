@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 217682773}
   m_Layer: 0
-  m_Name: BacGround
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62c900f5adc5a48a619089e078d00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleText: {fileID: 1542413296}
+  titleText: {fileID: 1542413296}
 --- !u!4 &401962919
 Transform:
   m_ObjectHideFlags: 0

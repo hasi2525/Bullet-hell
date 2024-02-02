@@ -5,10 +5,12 @@ using UnityEngine;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    //プレイヤーの移動できる範囲
     private const float MinX = -8.31f;
     private const float MaxX = 8.31f;
     private const float MinY = -4.19f;
     private const float MaxY = 4.19f;
+    //プレイヤーの移動速度
     private const float MoveSpeed = 7f;
 
     /// <summary>

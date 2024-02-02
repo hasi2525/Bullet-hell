@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
     //敵一機あたりのスコア
     private const int PointsPerEnemy = 100;
     //ゲームクリア目標ポイント
-    private const int TargetScore = 3000;
+    private const int TargetScore = 2000;
 
     void Start()
     {

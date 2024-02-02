@@ -7,13 +7,16 @@ using UnityEngine;
 public class BossEnemyLauncher : MonoBehaviour
 {
     // オブジェクトプール
-    [SerializeField] private BossObjectPoolController objectPool;
+    [SerializeField] 
+    private BossObjectPoolController objectPool;
 
     // 発射の間隔
-    [SerializeField] private float shotInterval;
+    [SerializeField] 
+    private float shotInterval;
 
     // 一度に発射する弾の数
-    [SerializeField] private int bulletsPerShot;
+    [SerializeField]
+    private int bulletsPerShot;
 
     void Start()
     {

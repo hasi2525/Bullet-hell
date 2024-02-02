@@ -193,5 +193,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 7014839834612150942, guid: b871625164499e5469c9cc8414a150d7, type: 3}
-  maxHp: 30
+  maxHp: 40
   targetYPosition: 3.5
